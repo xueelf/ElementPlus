@@ -1,0 +1,16 @@
+.idea/
+.DS_Store
+*.local
+
+# Optional eslint cache
+.eslintcache
+
+dist/
+
+# Dependency directories
+node_modules/
+
+# Types
+auto-imports.d.ts
+components.d.ts
+typed-router.d.ts
