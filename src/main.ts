@@ -15,4 +15,5 @@ app.use(pinia);
 app.use(router);
 app.use(ElementPlus);
 
-app.mount("#app");
+await router.isReady();
+app.mount('#app');
