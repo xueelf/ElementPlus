@@ -22,6 +22,12 @@ export default defineConfig(({ mode }) => {
     server: {
       host: true,
       port: Number(VITE_PORT),
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use '@/styles/element/index.scss';`,
+        },
+      },
     },
   };
 });
