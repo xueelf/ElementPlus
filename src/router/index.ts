@@ -1,9 +1,18 @@
-import { createRouter, createWebHistory } from "vue-router";
-import { routes, handleHotUpdate } from "vue-router/auto-routes";
+import { useAppStore } from '@/stores/app';
+import { createRouter, createWebHistory } from 'vue-router';
+import { routes, handleHotUpdate } from 'vue-router/auto-routes';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes,
+  routes: [
+    {
+      path: '/',
+      redirect: '/home',
+    },
+    ...routes,
+  ],
+});
+
 const PATH_LOGIN = '/login';
 // 白名单
 const whiteList = [PATH_LOGIN];
