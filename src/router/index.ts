@@ -4,6 +4,27 @@ import { routes, handleHotUpdate } from "vue-router/auto-routes";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+const PATH_LOGIN = '/login';
+// 白名单
+const whiteList = [PATH_LOGIN];
+
+// 检查路径是否在白名单中（支持前缀匹配，如 '/auth' 会匹配 '/auth/login' 等子路由）
+const isInWhiteList = (path: string) => {
+  return whiteList.some((white) => path === white || path.startsWith(`${white}/`));
+};
+
+router.beforeEach((to) => {
+  const appStore = useAppStore();
+
+  if (appStore.token) {
+    if (isInWhiteList(to.path)) {
+      return '/';
+    }
+  } else {
+    if (!isInWhiteList(to.path)) {
+      return PATH_LOGIN;
+    }
+  }
 });
 
 if (import.meta.hot) {

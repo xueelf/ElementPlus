@@ -10,7 +10,7 @@ function pathResolve(dir: string) {
 export default defineConfig(({ mode }) => {
   const root = process.cwd();
   const env = loadEnv(mode, root);
-  const { VITE_PORT } = env;
+  const { VITE_PORT, VITE_BASE_URL, VITE_API_PATH } = env;
 
   return {
     plugins: createVitePlugins(),
@@ -22,6 +22,14 @@ export default defineConfig(({ mode }) => {
     server: {
       host: true,
       port: Number(VITE_PORT),
+      proxy: {
+        [VITE_API_PATH]: {
+          target: VITE_BASE_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(VITE_API_PATH, ''),
+        },
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {
