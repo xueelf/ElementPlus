@@ -1,7 +1,9 @@
 {
-  "name": "vue-template",
+  "name": "element-plus-template",
   "private": true,
   "type": "module",
+  "license": "MIT",
+  "author": "Yuki <admin@yuki.sh>",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -9,10 +11,12 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache",
-    "format": "prettier --write --experimental-cli src/",
+    "format": "prettier --write src/",
     "prepare": "husky"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "element-plus": "^2.13.2",
     "pinia": "^3.0.4",
     "vue": "^3.5.29",
     "vue-router": "^5.0.3"
@@ -20,6 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "^20.4.2",
     "@commitlint/config-conventional": "^20.4.2",
+    "@iconify-json/ep": "^1.2.4",
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.10.13",
     "@vitejs/plugin-vue": "^6.0.4",
@@ -32,9 +37,12 @@
     "husky": "^9.1.7",
     "npm-run-all2": "^8.0.4",
     "prettier": "^3.8.1",
+    "sass-embedded": "^1.97.3",
     "typescript": "^5.9.3",
     "unocss": "^66.6.0",
     "unplugin-auto-import": "^21.0.0",
+    "unplugin-element-plus": "^0.11.2",
+    "unplugin-icons": "^23.0.1",
     "unplugin-vue-components": "^31.0.0",
     "vite": "^7.3.1",
     "vite-plugin-vue-devtools": "^8.0.6",
