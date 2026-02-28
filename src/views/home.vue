@@ -75,7 +75,7 @@
       <div class="flex flex-col items-center gap-4 md:flex-row">
         <GithubAvatar :size="56" id="xueelf" class="shrink-0" />
         <div class="text-center md:text-left">
-          <h3 class="m-0 text-lg">欢迎回来，Admin</h3>
+          <h3 class="m-0 text-lg">欢迎回来，Yuki</h3>
           <p class="m-0 mt-1 text-sm color-[var(--el-text-color-secondary)]">
             {{ appStore.title }} · 基于 Vue 3 + Element Plus 的开发模板
           </p>

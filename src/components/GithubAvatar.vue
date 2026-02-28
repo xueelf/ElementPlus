@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import type { AvatarProps } from 'element-plus';
+  import { resolveGithubAvatar, resolveGithubUrl } from '@/utils/resolve';
 
   interface Props extends AvatarProps {
     id?: string;
@@ -8,11 +9,11 @@
   const props = defineProps<Props>();
   const avatarSrc = computed(() => {
     if (props.id) {
-      return `https://github.com/${props.id}.png`;
+      return resolveGithubAvatar(props.id);
     }
     return props.src;
   });
-  const profileUrl = computed(() => (props.id ? `https://github.com/${props.id}` : undefined));
+  const profileUrl = computed(() => (props.id ? resolveGithubUrl(props.id) : undefined));
 
   function handleClick() {
     if (!profileUrl.value) {

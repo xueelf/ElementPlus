@@ -1,6 +1,7 @@
 <script setup lang="ts">
+  import pkg from 'package.json';
   import { useAppStore } from '@/stores/app';
-  import pkg from '../../package.json';
+  import { resolveRepoUrl, resolveNpmUrl } from '@/utils/resolve';
 
   definePage({
     meta: {
@@ -10,13 +11,13 @@
 
   const appStore = useAppStore();
 
-  const toNpmUrl = (name: string) => `https://www.npmjs.com/package/${name}`;
+  const repoUrl = resolveRepoUrl(pkg.repository.url);
 
   const toDeps = (deps: Record<string, string>) =>
     Object.entries(deps).map(([name, version]) => ({
       name,
       version,
-      url: toNpmUrl(name),
+      url: resolveNpmUrl(name),
     }));
 
   const dependencies = toDeps(pkg.dependencies);
@@ -31,7 +32,9 @@
           <IconEpEleme class="text-2xl" />
         </ElAvatar>
         <div class="text-center md:text-left">
-          <h3 class="m-0 text-lg">{{ appStore.title }}</h3>
+          <ElLink :href="repoUrl" target="_blank" underline="never" class="about-title">
+            {{ appStore.title }}
+          </ElLink>
           <p class="text-sm text-[var(--el-text-color-secondary)] mt-1 mb-0">
             基于 Vue + Element Plus + TypeScript 的后台管理模板
           </p>
@@ -90,4 +93,10 @@
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  .about-title.el-link {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--el-text-color-primary);
+  }
+</style>

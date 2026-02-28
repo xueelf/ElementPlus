@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': pathResolve('./src'),
+        'package.json': pathResolve('./package.json'),
       },
     },
     server: {

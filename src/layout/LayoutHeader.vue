@@ -1,8 +1,14 @@
 <script setup lang="ts">
+  import { repository } from 'package.json';
   import { useAppStore } from '@/stores/app';
+  import { resolveGithubUrl } from '@/utils/resolve';
 
   const router = useRouter();
   const appStore = useAppStore();
+
+  function openRepo() {
+    window.open(resolveGithubUrl(repository), '_blank');
+  }
 
   function handleLogout() {
     ElMessageBox.confirm('确认退出登录？', '提示', {
@@ -26,11 +32,12 @@
       <ElDropdown>
         <span class="layout-header__user">
           <GithubAvatar :size="28" id="xueelf" />
-          <span class="ml-2">Admin</span>
+          <span class="ml-2">Yuki</span>
         </span>
         <template #dropdown>
           <ElDropdownMenu>
-            <ElDropdownItem @click="handleLogout">退出登录</ElDropdownItem>
+            <ElDropdownItem @click="openRepo"> 项目仓库 </ElDropdownItem>
+            <ElDropdownItem divided @click="handleLogout">退出登录</ElDropdownItem>
           </ElDropdownMenu>
         </template>
       </ElDropdown>
