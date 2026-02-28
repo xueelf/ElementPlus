@@ -30,8 +30,8 @@ Since I personally prefer Bun, this template uses it as the default package mana
 
 ```bash
 # Clone the repository
-git clone https://github.com/xueelf/Vue.git
-cd Vue
+git clone https://github.com/xueelf/ElementPlus.git
+cd ElementPlus
 
 # Install dependencies
 bun install
@@ -71,7 +71,7 @@ bun install
 │  ├─ router/              # Vue Router configuration with guards
 │  ├─ stores/              # Pinia stores (app, etc.)
 │  ├─ styles/              # Global styles and Element Plus theme overrides
-│  ├─ utils/               # Utility modules (request, etc.)
+│  ├─ utils/               # Utility modules (request, resolve, etc.)
 │  ├─ views/               # Vue views/pages
 │  ├─ App.vue              # Root component
 │  └─ main.ts              # Entry point
@@ -136,7 +136,7 @@ docs: update README
 
 ### Auto Imports
 
-Configured with `unplugin-auto-import` and `unplugin-vue-components` to automatically import Vue APIs, Pinia, Vue Router, Element Plus components/APIs, and icon components without manual `import` statements.
+Configured with `unplugin-auto-import` and `unplugin-vue-components` to automatically import Vue APIs, Pinia, Vue Router, Element Plus components/APIs, Element Hooks composables, and icon components without manual `import` statements.
 
 ### File-based Routing
 

@@ -9,6 +9,7 @@
 
   const router = useRouter();
   const appStore = useAppStore();
+  const message = useMessage();
 
   const form = reactive({
     username: '',
@@ -19,7 +20,7 @@
 
   function handleLogin() {
     if (!form.username || !form.password) {
-      ElMessage.warning('请输入用户名和密码');
+      message.warning('请输入用户名和密码');
       return;
     }
 
@@ -28,7 +29,7 @@
     // 模拟登录请求
     setTimeout(() => {
       appStore.setToken();
-      ElMessage.success('登录成功');
+      message.success('登录成功');
       router.replace('/');
       loading.value = false;
     }, 500);

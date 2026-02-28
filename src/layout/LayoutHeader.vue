@@ -1,24 +1,27 @@
 <script setup lang="ts">
   import { repository } from 'package.json';
   import { useAppStore } from '@/stores/app';
-  import { resolveGithubUrl } from '@/utils/resolve';
+  import { resolveRepoUrl } from '@/utils/resolve';
 
   const router = useRouter();
   const appStore = useAppStore();
+  const messageBox = useMessageBox();
 
   function openRepo() {
-    window.open(resolveGithubUrl(repository), '_blank');
+    window.open(resolveRepoUrl(repository.url), '_blank');
   }
 
-  function handleLogout() {
-    ElMessageBox.confirm('确认退出登录？', '提示', {
+  async function handleLogout() {
+    const isConfirmed = await messageBox.confirm('确认退出登录？', '提示', {
       confirmButtonText: '确认',
       cancelButtonText: '取消',
       type: 'warning',
-    }).then(() => {
+    });
+
+    if (isConfirmed) {
       appStore.clearToken();
       router.replace('/login');
-    });
+    }
   }
 </script>
 
