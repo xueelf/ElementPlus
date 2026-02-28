@@ -36,6 +36,13 @@ router.beforeEach((to) => {
   }
 });
 
+router.afterEach((to) => {
+  const appStore = useAppStore();
+  const title = to.meta.title ? `${to.meta.title} | ${appStore.title}` : appStore.title;
+
+  document.title = title;
+});
+
 if (import.meta.hot) {
   handleHotUpdate(router);
 }
