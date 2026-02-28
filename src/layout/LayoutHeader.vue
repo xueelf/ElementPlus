@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { UserFilled } from '@element-plus/icons-vue';
   import { useAppStore } from '@/stores/app';
 
   const router = useRouter();
@@ -26,7 +25,7 @@
     <div class="layout-header__right">
       <ElDropdown>
         <span class="layout-header__user">
-          <ElAvatar :size="28" :icon="UserFilled" />
+          <GithubAvatar :size="28" id="xueelf" />
           <span class="ml-2">Admin</span>
         </span>
         <template #dropdown>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { UserFilled } from '@element-plus/icons-vue';
   import { useAppStore } from '@/stores/app';
 
   definePage({
@@ -11,17 +10,10 @@
   const appStore = useAppStore();
 
   const features = [
+    { icon: 'i-ep-box', title: 'Vue', desc: '渐进式 JavaScript 框架，组合式 API' },
+    { icon: 'i-ep-menu', title: 'Element Plus', desc: '丰富的 UI 组件库，开箱即用' },
     { icon: 'i-ep-lightning', title: 'Vite', desc: '极速的开发体验，秒级热更新' },
-    {
-      icon: 'i-ep-box',
-      title: 'Element Plus',
-      desc: '丰富的 UI 组件库，开箱即用',
-    },
-    {
-      icon: 'i-ep-document',
-      title: 'TypeScript',
-      desc: '完整的类型支持，提升开发体验',
-    },
+    { icon: 'i-ep-document', title: 'TypeScript', desc: '完整的类型支持，提升开发体验' },
     { icon: 'i-ep-data-board', title: 'Pinia', desc: '类型安全的状态管理' },
     {
       icon: 'i-ep-guide',
@@ -33,6 +25,12 @@
       icon: 'i-ep-connection',
       title: 'Axios',
       desc: '强大的 HTTP 客户端，请求拦截封装',
+    },
+    { icon: 'i-ep-coin', title: 'Radash', desc: '现代化工具函数库，零依赖轻量实用' },
+    {
+      icon: 'i-ep-operation',
+      title: 'Element Hooks',
+      desc: 'Element Plus 组合式函数扩展',
     },
     {
       icon: 'i-ep-files',
@@ -62,6 +60,8 @@
     { title: 'Vue Router', url: 'https://router.vuejs.org/' },
     { title: 'UnoCSS', url: 'https://unocss.dev/' },
     { title: 'Axios', url: 'https://axios-http.com/' },
+    { title: 'Radash', url: 'https://radash-docs.vercel.app/' },
+    { title: 'Element Hooks', url: 'https://element-hooks.js.org/' },
     { title: 'Iconify', url: 'https://icon-sets.iconify.design/' },
     { title: 'ESLint', url: 'https://eslint.org/' },
     { title: 'Prettier', url: 'https://prettier.io/' },
@@ -72,9 +72,9 @@
 <template>
   <div class="home">
     <ElCard shadow="never" class="mb-4">
-      <div class="flex items-center gap-4">
-        <ElAvatar :size="56" :icon="UserFilled" />
-        <div>
+      <div class="flex flex-col items-center gap-4 md:flex-row">
+        <GithubAvatar :size="56" id="xueelf" class="shrink-0" />
+        <div class="text-center md:text-left">
           <h3 class="m-0 text-lg">欢迎回来，Admin</h3>
           <p class="m-0 mt-1 text-sm color-[var(--el-text-color-secondary)]">
             {{ appStore.title }} · 基于 Vue 3 + Element Plus 的开发模板
@@ -84,7 +84,15 @@
     </ElCard>
 
     <ElRow :gutter="16" class="mb-4">
-      <ElCol v-for="item in features" :key="item.title" :span="8" class="mb-4">
+      <ElCol
+        v-for="item in features"
+        :key="item.title"
+        :xs="24"
+        :sm="12"
+        :md="8"
+        :lg="6"
+        class="mb-4"
+      >
         <ElCard shadow="hover" class="h-full">
           <div class="flex items-start gap-3">
             <div class="text-xl color-[var(--el-color-primary)]">
@@ -105,7 +113,7 @@
       <template #header>
         <span>快速链接</span>
       </template>
-      <div class="flex gap-3">
+      <div class="flex flex-wrap gap-3">
         <ElLink
           v-for="link in quickLinks"
           :key="link.url"
