@@ -31,6 +31,21 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
+    build: {
+      chunkSizeWarningLimit: 1024,
+      rollupOptions: {
+        output: {
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js',
+          assetFileNames({ names: [name = ''] }) {
+            if (/\.(png|jpe?g|gif|svg|webp)$/i.test(name)) {
+              return 'assets/images/[name]-[hash].[ext]';
+            }
+            return 'assets/[ext]/[name]-[hash].[ext]';
+          },
+        },
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {
