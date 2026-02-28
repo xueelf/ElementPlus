@@ -50,11 +50,10 @@
 
 <style scoped lang="scss">
   .layout-header {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
-    padding: 0 16px;
 
     &__left {
       display: flex;
@@ -70,7 +69,7 @@
     }
 
     &__name {
-      font-size: 16px;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--el-text-color-primary);
       white-space: nowrap;
@@ -85,7 +84,6 @@
       display: flex;
       align-items: center;
       cursor: pointer;
-      font-size: 14px;
       color: var(--el-text-color-regular);
     }
   }

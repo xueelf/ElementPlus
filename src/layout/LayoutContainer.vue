@@ -27,17 +27,13 @@
     height: 100vh;
 
     > .el-header {
-      background-color: var(--el-bg-color);
       border-bottom: 1px solid var(--el-border-color-light);
-      padding: 0;
     }
 
     > .el-container {
       overflow: hidden;
 
       .el-aside {
-        width: var(--layout-aside-width, 220px);
-        background-color: var(--el-bg-color);
         overflow-y: auto;
       }
 
