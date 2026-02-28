@@ -18,7 +18,6 @@ export function useKeepAlive() {
   const isNested = computed(() => {
     return route.matched.filter(({ components }) => components?.default).length > 1;
   });
-
   const keepAliveState = reactive<KeepAliveState>({
     cache: markRaw({}),
     components: [],
@@ -30,7 +29,6 @@ export function useKeepAlive() {
     if (!name || !component) {
       return;
     }
-
     const cached = Reflect.get(keepAliveState.cache, name);
 
     if (cached) {
@@ -44,7 +42,7 @@ export function useKeepAlive() {
       const wrapper = { name, render: () => h(ref.value) };
 
       Reflect.set(keepAliveState.cache, name, { ref, wrapper });
-      keepAliveState.components.push(name as string);
+      keepAliveState.components.push(name);
 
       return wrapper;
     }
@@ -54,6 +52,7 @@ export function useKeepAlive() {
 
   function removeCachedView(name: string) {
     const index = keepAliveState.components.indexOf(name);
+
     if (index > -1) {
       keepAliveState.components.splice(index, 1);
     }
@@ -62,6 +61,7 @@ export function useKeepAlive() {
 
   function clearCachedViews() {
     keepAliveState.components.length = 0;
+
     Object.keys(keepAliveState.cache).forEach((key) => {
       Reflect.deleteProperty(keepAliveState.cache, key);
     });

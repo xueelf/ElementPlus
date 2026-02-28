@@ -48,6 +48,7 @@ request.interceptors.response.use(
   (error) => {
     console.error(error);
     ElMessage.error(error.message);
+
     return Promise.reject(error);
   },
 );
