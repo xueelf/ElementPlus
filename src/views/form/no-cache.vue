@@ -1,16 +1,61 @@
 <script setup lang="ts">
+  import { useForm } from 'element-hooks';
+  import { ElCheckboxGroup, ElInput } from 'element-plus';
+
   definePage({
     meta: {
       title: '非缓存表单',
     },
   });
 
-  const form = reactive({
-    name: '',
-    email: '',
-    phone: '',
-    subscribe: [],
-    remark: '',
+  const [Form] = useForm({
+    labelWidth: '80px',
+    model: {
+      name: '',
+      email: '',
+      phone: '',
+      subscribe: [],
+      remark: '',
+    },
+    items: [
+      {
+        label: '姓名',
+        prop: 'name',
+        render: { component: ElInput, props: { placeholder: '请输入姓名' } },
+      },
+      {
+        label: '邮箱',
+        prop: 'email',
+        render: { component: ElInput, props: { placeholder: '请输入邮箱' } },
+      },
+      {
+        label: '电话',
+        prop: 'phone',
+        render: { component: ElInput, props: { placeholder: '请输入电话' } },
+      },
+      {
+        label: '订阅',
+        prop: 'subscribe',
+        render: {
+          component: ElCheckboxGroup,
+          props: {
+            options: [
+              { label: '邮件通知', value: 'email' },
+              { label: '短信通知', value: 'sms' },
+              { label: '站内消息', value: 'inbox' },
+            ],
+          },
+        },
+      },
+      {
+        label: '备注',
+        prop: 'remark',
+        render: {
+          component: ElInput,
+          props: { type: 'textarea', placeholder: '请输入备注', rows: 3 },
+        },
+      },
+    ],
   });
 </script>
 
@@ -28,27 +73,7 @@
           此页面未开启 KeepAlive 缓存。填写内容后切换到其他页面再返回，表单数据将被重置。
         </ElAlert>
       </div>
-      <ElForm :model="form" label-width="80px">
-        <ElFormItem label="姓名">
-          <ElInput v-model="form.name" placeholder="请输入姓名" />
-        </ElFormItem>
-        <ElFormItem label="邮箱">
-          <ElInput v-model="form.email" placeholder="请输入邮箱" />
-        </ElFormItem>
-        <ElFormItem label="电话">
-          <ElInput v-model="form.phone" placeholder="请输入电话" />
-        </ElFormItem>
-        <ElFormItem label="订阅">
-          <ElCheckboxGroup v-model="form.subscribe">
-            <ElCheckbox label="邮件通知" value="email" />
-            <ElCheckbox label="短信通知" value="sms" />
-            <ElCheckbox label="站内消息" value="inbox" />
-          </ElCheckboxGroup>
-        </ElFormItem>
-        <ElFormItem label="备注">
-          <ElInput v-model="form.remark" type="textarea" placeholder="请输入备注" :rows="3" />
-        </ElFormItem>
-      </ElForm>
+      <Form />
     </ElCard>
   </div>
 </template>

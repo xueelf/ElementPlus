@@ -37,10 +37,10 @@
 
 <template>
   <div class="login">
-    <ElCard class="login__card">
-      <div class="login__header">
-        <img src="@/assets/logo.svg" alt="logo" class="login__logo" />
-        <h2 class="login__title">{{ appStore.title }}</h2>
+    <div class="login__card">
+      <div class="flex flex-col items-center mb-6">
+        <img src="@/assets/logo.svg" alt="logo" class="w-12 h-12 mb-3" />
+        <h2 class="text-xl font-semibold m-0">{{ appStore.title }}</h2>
       </div>
       <ElForm @submit.prevent="handleLogin">
         <ElFormItem>
@@ -69,7 +69,7 @@
           </ElButton>
         </ElFormItem>
       </ElForm>
-    </ElCard>
+    </div>
   </div>
 </template>
 
@@ -79,35 +79,23 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: var(--el-bg-color-page);
+    padding: 24px;
+    background-color: var(--el-bg-color);
 
     &__card {
-      width: 380px;
-      border-radius: 12px;
+      width: 100%;
+      max-width: 380px;
+    }
 
-      & .el-card__body {
+    @screen sm {
+      background-color: var(--el-bg-color-page);
+
+      .login__card {
+        background-color: var(--el-bg-color);
+        border-radius: 12px;
+        box-shadow: var(--el-box-shadow-light);
         padding: 32px;
       }
-    }
-
-    &__header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    &__logo {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 12px;
-    }
-
-    &__title {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--el-text-color-primary);
-      margin: 0;
     }
   }
 </style>
