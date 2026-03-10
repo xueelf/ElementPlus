@@ -22,7 +22,7 @@
     "@element-plus/icons-vue": "^2.3.2",
     "axios": "^1.13.6",
     "element-hooks": "^1.0.3",
-    "element-plus": "^2.13.3",
+    "element-plus": "^2.13.5",
     "normalize.css": "^8.0.1",
     "pinia": "^3.0.4",
     "radash": "^12.1.1",
